@@ -87,7 +87,7 @@ num: {
     },
     sym: {
         reason: "Passwordi nuk ka simbols!",
-        description: "Passwordet që nuk përmbajnë simbola mund të kenë më pak kombinime të mundshme, duke e bërë më të lehtë zbulimin e tyre përmes sulmeve Brute Force.\n<i>Fakt: Një fjalëkalim me 8 shkronja dhe numra ka vetëm 218 trilionë kombinime.\nKurde Shkronja dhe numra <b>6.63 quadrillion kombinime</b></i>"
+        description: "Passwordet që nuk përmbajnë simbola mund të kenë më pak kombinime të mundshme, duke e bërë më të lehtë zbulimin e tyre përmes sulmeve Brute Force.\n<i>Fakt: Një fjalëkalim me 8 shkronja dhe numra ka vetëm 218 trilionë kombinime.\nKurde Shkronja, numra dhe simbole <b>6.63 quadrillion kombinime</b></i>"
     }
 }
 
