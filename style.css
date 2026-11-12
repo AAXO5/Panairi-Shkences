@@ -1,0 +1,171 @@
+ body {
+          background-color: #0b0f19;
+          background-image: 
+            radial-gradient(circle at 15% 85%, rgba(0, 180, 216, 0.35) 0%, transparent 45%),
+            radial-gradient(circle at 85% 15%, rgba(114, 9, 183, 0.25) 0%, transparent 50%);
+          height: 100vh;
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          font-family: monospace, sans-serif;
+          margin: 0;
+          color: #e2e8f0;
+        }
+
+        .signup-container {
+          background: rgba(15, 23, 42, 0.55);
+          backdrop-filter: blur(20px);
+          -webkit-backdrop-filter: blur(20px);
+          border: 1px solid rgba(255, 255, 255, 0.08);
+          border-radius: 28px;
+          padding: 45px;
+          width: 700px;
+          box-shadow: 0 25px 50px rgba(0, 0, 0, 0.5), inset 0 1px 0 rgba(255, 255, 255, 0.1);
+        }
+
+        .signup-container h2 {
+          color: #7dd3fc;
+          font-size: 32px;
+          margin-top: 0;
+          margin-bottom: 35px;
+          letter-spacing: 1px;
+          text-shadow: 0 0 15px rgba(125, 211, 252, 0.5);
+        }
+
+        .input-group {
+          margin-bottom: 24px;
+          display: flex;
+          flex-direction: column;
+        }
+
+        .input-group label {
+          color: #94a3b8;
+          font-size: 13px;
+          margin-bottom: 8px;
+          letter-spacing: 0.5px;
+        }
+
+        .input-group input {
+          background: rgba(20, 29, 45, 0.7);
+          border: 1px solid rgba(255, 255, 255, 0.06);
+          border-radius: 12px;
+          padding: 14px 16px;
+          color: #f8fafc;
+          font-size: 15px;
+          outline: none;
+          transition: all 0.3s ease;
+        }
+
+        .input-group input:focus {
+          border-color: #38bdf8;
+          box-shadow: 0 0 15px rgba(56, 189, 248, 0.3);
+        }
+
+        .input-group input::placeholder {
+          color: #64748b;
+        }
+
+       
+        .password-strength {
+          display: none;
+          align-items: center;
+          justify-content: space-between;
+          margin-top: 10px;
+          font-size: 12px;
+        }
+
+        .strength-bar {
+          background: rgba(255, 255, 255, 0.1);
+          height: 4px;
+          width: 140px;
+          border-radius: 4px;
+          overflow: hidden;
+          transition: height 0.3s ease;
+        }
+
+        .strength-fill {
+          height: 100%;
+          width: 0%;
+          border-radius: 4px;
+          transition: width 0.3s ease, background-color 0.3s ease;
+        }
+
+        .submit-btn {
+          background: linear-gradient(135deg, #93c5fd, #60a5fa);
+          color: #0f172a;
+          border: none;
+          border-radius: 14px;
+          padding: 16px;
+          width: 100%;
+          font-size: 16px;
+          font-weight: bold;
+          cursor: pointer;
+          margin-top: 15px;
+          box-shadow: 0 4px 20px rgba(96, 165, 250, 0.4);
+          transition: transform 0.2s ease, box-shadow 0.2s ease;
+        }
+
+        .submit-btn:hover {
+          transform: translateY(-2px);
+          box-shadow: 0 6px 25px rgba(96, 165, 250, 0.6);
+        }
+        #issuebox{
+            display: none;
+            width: 400px;
+            background-color: #220f0f;
+            border: 1px solid rgba(248, 113, 113, 0.4);
+            border-radius: 25px;
+            padding: 25px 30px;
+            margin-left: 30px;
+            color: #fca5a5;
+            font-size: 14px;
+        }
+
+        #issuebox h3 {
+            color: #f87171;
+            margin-top: 0;
+        }
+
+        #issuebox p {
+            white-space: pre-line;
+            line-height: 1.5;
+        }
+
+        #issuebox img {
+            display: none;
+            max-width: 100%;
+            border-radius: 12px;
+        }
+       
+.overlay-backdrop {
+  display: none; 
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(11, 15, 25, 0.8);
+  backdrop-filter: blur(8px);
+  z-index: 9999; 
+  justify-content: center;
+  align-items: center;
+}
+
+
+.overlay-box {
+  background: rgba(15, 23, 42, 0.95);
+  border: 1px solid rgba(125, 211, 252, 0.3);
+  border-radius: 24px;
+  padding: 35px;
+  width: 400px;
+  max-width: 90%;
+  text-align: center;
+  box-shadow: 0 25px 50px rgba(0, 0, 0, 0.7);
+  color: #e2e8f0;
+}
+
+.overlay-box h3 {
+  color: #7dd3fc;
+  margin-top: 0;
+  font-size: 24px;
+}
