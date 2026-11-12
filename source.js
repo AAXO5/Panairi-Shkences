@@ -71,23 +71,28 @@ const reasons = {
     },
     maxlen: {
         reason: "Passwordi është teper i gjatë!",
-        description: "Passwordet tepër të gjata nuk jane domosdoshmërisht të pa sigurta, por sistemet e programuara dobët mund të kene probleme probleme me përpunimin e tyre"
+        description: "Passwordet tepër të gjata nuk jane domosdoshmërisht të pa sigurta, por sistemet e programuara dobët mund të kene probleme probleme me përpunimin e tyre",
+        image: "./assets/images/TOO-LONG-PLACEHOLDER.webp"
     },
     upper: {
         reason: "Passwordi nuk ka shkronjë të madhe!",
-        description: "Passwordet që përmbajnë vetem shkronja të vogla kanë më pak kombinime të mundshme\n<i>Fakt: Password me 8 shkronja që përmban vetëm shkronja të vogla ka 208 billion kombinime të mundshme\nKurse me shkronja të vogla dhe të mëdha <b>53.5 trillion kombinime.</b></i>"
+        description: "Passwordet që përmbajnë vetem shkronja të vogla kanë më pak kombinime të mundshme\n<i>Fakt: Password me 8 shkronja që përmban vetëm shkronja të vogla ka 208 billion kombinime të mundshme\nKurse me shkronja të vogla dhe të mëdha <b>53.5 trillion kombinime.</b></i>",
+        image: "./assets/images/UPPERCASE-PLACEHOLDER.webp"
     },
     lower: {
         reason: "Passwordi nuk ka shkronjë të vogla!",
-        description: "Passwordet që përmbajnë vetem shkronja të madhe kanë më pak kombinime të mundshme\n<i>Fakt: Password me 8 shkronja që përmban vetëm shkronja të made ka 208 billion kombinime të mundshme\nKurse me shkronja të vogla dhe të mëdha <b>53.5 trillion kombinime.</b></i>"
+        description: "Passwordet që përmbajnë vetem shkronja të madhe kanë më pak kombinime të mundshme\n<i>Fakt: Password me 8 shkronja që përmban vetëm shkronja të madhe ka 208 billion kombinime të mundshme\nKurse me shkronja të vogla dhe të mëdha <b>53.5 trillion kombinime.</b></i>",
+        image: "./assets/images/LOWERCASE-PLACEHOLDER.webp"
     },
 num: {
         reason: "Passwordi nuk ka numra!",
-        description: "Passwordet që nuk përmbajnë numra mund të kenë më pak kombinime të mundshme, duke e bërë më të lehtë zbulimin e tyre përmes sulmeve Brute Force.\n<i>Fakt: Një fjalëkalim me 8 shkronja ka vetëm 53.5 trilionë kombinime.\nKurde Shkronja dhe numra <b>218 trilionë kombinime</b></i>"
+        description: "Passwordet që nuk përmbajnë numra mund të kenë më pak kombinime të mundshme, duke e bërë më të lehtë zbulimin e tyre përmes sulmeve brute-force.\n<i>Fakt: Një password me 8 shkronja ka vetëm 53.5 trilionë kombinime.\nKurse Shkronja dhe numra <b>218 trilionë kombinime</b></i>",
+        image: "./assets/images/NUMBERS-PLACEHOLDER.webp"
     },
     sym: {
         reason: "Passwordi nuk ka simbols!",
-        description: "Passwordet që nuk përmbajnë simbola mund të kenë më pak kombinime të mundshme, duke e bërë më të lehtë zbulimin e tyre përmes sulmeve Brute Force.\n<i>Fakt: Një fjalëkalim me 8 shkronja dhe numra ka vetëm 218 trilionë kombinime.\nKurde Shkronja, numra dhe simbole <b>6.63 quadrillion kombinime</b></i>"
+        description: "Passwordet që nuk përmbajnë simbola mund të kenë më pak kombinime të mundshme, duke e bërë më të lehtë zbulimin e tyre përmes sulmeve brute-force.\n<i>Fakt: Një password me 8 shkronja dhe numra ka vetëm 218 trilionë kombinime.\nKurse Shkronja, numra dhe simbole <b>6.63 quadrillion kombinime</b></i>",
+        image: "./assets/images/SYMBOLS-PLACEHOLDER.webp"
     }
 }
 
@@ -96,6 +101,7 @@ const issueBox = document.getElementById("issuebox")
 const issueReason = document.getElementById("issue-reason")
 const issueDescription = document.getElementById("issue-description")
 const issueImage = document.getElementById("issue-image")
+issueImage.onerror = () => issueImage.style.display = "none" // image not added yet
 const strengthContainer = document.getElementById("password-strength")
 const strengthText = document.getElementById("strength-text")
 const strengthFill = document.getElementById("strength-fill")
