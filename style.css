@@ -187,6 +187,35 @@
                 margin-top: 25px;
             }
         }
+
+        /* phones, the form and box are too wide so let them fill the screen */
+        @media (max-width: 830px) {
+            .signup-container {
+                width: calc(100% - 32px);
+                box-sizing: border-box;
+                padding: 30px 22px;
+            }
+
+            .signup-container h2 {
+                font-size: 26px;
+                margin-bottom: 25px;
+            }
+
+            /* 16px stops iphones from zooming in when you tap the input */
+            .input-group input {
+                font-size: 16px;
+            }
+
+            #issuebox, #issuebox.show {
+                width: calc(100% - 32px);
+                max-width: none;
+                box-sizing: border-box;
+            }
+
+            #issuebox h3, #issuebox p {
+                width: auto;
+            }
+        }
        
 .overlay-backdrop {
   display: none; 
