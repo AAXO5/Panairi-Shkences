@@ -56,22 +56,23 @@ Criteria: Uppercase and Lowercase, Symbols, Numbers, Maximum 64 characters, Mini
 const rules = {
   minlen:   p => p.length >= 8,
   maxlen: p => p.length <= 64,
-  upper: p => /[A-Z]/.test(p),
   lower: p => /[a-z]/.test(p),
+  upper: p => /[A-Z]/.test(p),
   num:   p => /[0-9]/.test(p),
   sym:   p => /[^A-Za-z0-9]/.test(p),
 }
 const ruleCount = Object.keys(rules).length
+const lerp = (a, b, t) => a + (b - a) * t
 
 const reasons = {
     minlen: {
         reason: "Passwordi është tepër i shkurtë!",
-        description: "Passwordet e shkurtra nuk janë të sigurta, kan më pak kombinime të mundshme të karakterve, kjo i lejon hakerët të suljmojnë nepërmjet brute-force (Aksesim me forcë)",
+        description: "Passwordet e shkurtra nuk janë të sigurta, kan më pak kombinime të mundshme të karakterve, kjo i lejon hakerët të suljmojnë nepërmjet brute-force (Aksesim me forcë)\n<i>Fakt: Passwordi më i përdorur në botë, <b>123456</b>, zbulohet menjëherë.\nNjë password me 8 karaktere (shkronja, numra dhe simbole) zbulohet për rreth 8 ditë.\nMe 12 karaktere: rreth <b>1.7 milion vjet</b>.</i>",
         image: "./assets/images/BRUTE-FORCE-PLACEHOLDER.webp"
     },
     maxlen: {
         reason: "Passwordi është teper i gjatë!",
-        description: "Passwordet tepër të gjata nuk jane domosdoshmërisht të pa sigurta, por sistemet e programuara dobët mund të kene probleme probleme me përpunimin e tyre",
+        description: "Passwordet tepër të gjata nuk jane domosdoshmërisht të pa sigurta, por sistemet e programuara dobët mund të kene probleme probleme me përpunimin e tyre\n<i>Fakt: bcrypt, një nga mënyrat më të përdorura për ruajtjen e passwordeve, lexon vetëm <b>72 karakteret e para</b>, pjesa tjetër injorohet.</i>",
         image: "./assets/images/TOO-LONG-PLACEHOLDER.webp"
     },
     upper: {
@@ -129,11 +130,17 @@ PasswordBox.addEventListener("input", e => {
     strengthContainer.style.display = "flex"
     strengthFill.style.width = (progress * 100) + "%"
 
+    // red -> yellow while rules are still missing, green only once everything passes
+    // every password passes at least 2 rules (length + one kind of character) so start counting from there
+    const t = Math.max(0, (met - 2) / (ruleCount - 2))
+    const hue = met === ruleCount ? 142 : lerp(0, 52, Math.max(0, (met - 2) / (ruleCount - 3)))
+    const color = `hsl(${hue}, ${lerp(91, 69, t)}%, ${lerp(71, 58, t)}%)`
+    strengthText.style.color = color
+    strengthFill.style.backgroundColor = color
+
     if (met === ruleCount) { // Pass
         issueBox.classList.remove("show")
         strengthText.textContent = "Password strong enough"
-        strengthText.style.color = "#4ade80"
-        strengthFill.style.backgroundColor = "#4ade80"
     } else { // Fail
           const info = reasons[firstFailure]
           issueReason.textContent = info.reason
@@ -146,7 +153,5 @@ PasswordBox.addEventListener("input", e => {
           }
           issueBox.classList.add("show")
           strengthText.textContent = "Password too weak!"
-          strengthText.style.color = "#f87171"
-          strengthFill.style.backgroundColor = "#f87171"
     }
 })

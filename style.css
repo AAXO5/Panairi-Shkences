@@ -149,6 +149,23 @@
             line-height: 1.5;
         }
 
+        /* the fact part, so it doesnt blend in with the normal text */
+        #issuebox i {
+            display: block;
+            margin-top: 6px;
+            padding: 12px 16px;
+            font-style: normal;
+            color: #bae6fd;
+            background: rgba(56, 189, 248, 0.08);
+            border-left: 3px solid #38bdf8;
+            border-radius: 8px;
+        }
+
+        #issuebox i b {
+            color: #7dd3fc;
+            font-size: 16px;
+        }
+
         #issuebox img {
             display: none;
             max-width: 100%;
