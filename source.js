@@ -103,7 +103,7 @@ const strengthFill = document.getElementById("strength-fill")
 PasswordBox.addEventListener("input", e => {
     const p = e.target.value
     if (p === "") {
-        issueBox.style.display = "none"
+        issueBox.classList.remove("show")
         strengthContainer.style.display = "none"
         return;
     }
@@ -124,7 +124,7 @@ PasswordBox.addEventListener("input", e => {
     strengthFill.style.width = (progress * 100) + "%"
 
     if (met === ruleCount) { // Pass
-        issueBox.style.display = "none"
+        issueBox.classList.remove("show")
         strengthText.textContent = "Password strong enough"
         strengthText.style.color = "#4ade80"
         strengthFill.style.backgroundColor = "#4ade80"
@@ -138,7 +138,7 @@ PasswordBox.addEventListener("input", e => {
           } else {
               issueImage.style.display = "none"
           }
-          issueBox.style.display = "block"
+          issueBox.classList.add("show")
           strengthText.textContent = "Password too weak!"
           strengthText.style.color = "#f87171"
           strengthFill.style.backgroundColor = "#f87171"
