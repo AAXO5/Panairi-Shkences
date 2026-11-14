@@ -10,16 +10,52 @@
     </style>
 </head>
 <body>
+<header class="lab-header" aria-labelledby="lab-title">
+  <svg class="lab-shield" viewBox="0 0 48 48" fill="none" aria-hidden="true">
+    <path d="M24 3 9 9a5 5 0 0 0-3 4.6V24c0 10.5 6.5 17.5 18 21 11.5-3.5 18-10.5 18-21V13.6A5 5 0 0 0 39 9L24 3Z" stroke="currentColor" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/>
+    <path d="m18 24 4 4 8-11" stroke="currentColor" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/>
+  </svg>
+  <h1 id="lab-title">CYBERSECURITY LAB</h1>
+  <h2>How Secure Is Your Password?</h2>
+  <p>Test your password. Understand the risks. Protect your digital identity.</p>
+</header>
+
+<main class="lab-main">
+<section class="password-demo" aria-labelledby="demo-title" data-strength="medium">
+  <h2 id="demo-title">
+    <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
+      <rect x="4" y="10" width="16" height="12" rx="3"/>
+      <path d="M7 10V7a5 5 0 0 1 10 0v3M12 15v3"/>
+      <circle cx="12" cy="15" r="1"/>
+    </svg>
+    Password Strength Analyzer
+  </h2>
+  <label for="demo-password" lang="sq">Provoje me një fjalëkalim demonstrues</label>
+  <input type="text" id="demo-password" value="Cyber2026" autocomplete="off" spellcheck="false" autocapitalize="off" aria-describedby="demo-strength-text demo-rules">
+  <div class="demo-meter" role="meter" aria-label="Password criteria met" aria-valuemin="0" aria-valuemax="5" aria-valuenow="3" aria-valuetext="3 of 5 criteria met" id="demo-meter">
+    <span class="is-active"></span><span class="is-active"></span><span class="is-active"></span><span></span><span></span>
+  </div>
+  <p class="demo-strength-text" id="demo-strength-text" role="status">Medium Password</p>
+  <ul class="demo-rules" id="demo-rules" lang="sq">
+    <li data-demo-rule="length"><span class="demo-rule-icon" aria-hidden="true">×</span><span class="sr-only">Pa plotësuar: </span>Minimumi 15 karaktere</li>
+    <li class="is-met" data-demo-rule="upper"><span class="demo-rule-icon" aria-hidden="true">✓</span><span class="sr-only">Plotësuar: </span>Shkronja të mëdha</li>
+    <li class="is-met" data-demo-rule="lower"><span class="demo-rule-icon" aria-hidden="true">✓</span><span class="sr-only">Plotësuar: </span>Shkronja të vogla</li>
+    <li class="is-met" data-demo-rule="number"><span class="demo-rule-icon" aria-hidden="true">✓</span><span class="sr-only">Plotësuar: </span>Numra</li>
+    <li data-demo-rule="symbol"><span class="demo-rule-icon" aria-hidden="true">×</span><span class="sr-only">Pa plotësuar: </span>Simbole speciale</li>
+  </ul>
+</section>
+
+<div class="lab-content">
  <div class="signup-container">
   <h2>Sign Up</h2>
   <form>
     <div class="input-group">
-      <label>Email address</label>
-      <input type="email" placeholder="placeholder@gmail.com" required>
+      <label for="signup-email">Email address</label>
+      <input id="signup-email" type="email" placeholder="placeholder@gmail.com" required>
     </div>
     <div class="input-group">
-      <label>Password</label>
-      <input type="password" id="password" placeholder="*********" required>
+      <label for="password">Password</label>
+      <input type="password" id="password" aria-describedby="strength-text issue-reason issue-description" placeholder="*********" required>
       <div class="password-strength" id="password-strength">
         <span id="strength-text">Password too weak!</span>
         <div class="strength-bar">
@@ -29,13 +65,44 @@
     </div>
     <button type="submit" class="submit-btn">Create Account</button>
   </form>
+  <section class="cyber-challenge" aria-labelledby="challenge-title">
+    <svg class="challenge-shield" viewBox="0 0 48 48" fill="none" aria-hidden="true">
+      <path d="M24 5 10 11a4 4 0 0 0-2.5 3.7V24c0 9.5 5.9 15.7 16.5 19 10.6-3.3 16.5-9.5 16.5-19v-9.3A4 4 0 0 0 38 11L24 5Z" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+    </svg>
+    <h3 id="challenge-title">CYBER CHALLENGE</h3>
+    <p class="challenge-question">Can You Beat the Hacker?</p>
+    <p class="challenge-description">Create a strong password to complete the challenge.</p>
+  </section>
 </div>
 
-<div id="issuebox">
-  <h3 id="issue-reason"></h3>
-  <p id="issue-description"></p>
-  <img id="issue-image" alt="">
+<aside id="signup-feedback" class="signup-feedback" aria-label="Password feedback" aria-live="polite" hidden></aside>
+
 </div>
+<section class="password-generator" aria-labelledby="generator-title">
+  <h2 id="generator-title">
+    <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
+      <circle cx="16" cy="8" r="5"/>
+      <path d="m12.5 11.5-9 9H1v-3l3-3h3v-3h3l2.5-2.5M17 7h.01"/>
+    </svg>
+    Secure Password Generator
+  </h2>
+  <div class="generated-password-field">
+    <input id="generated-password" type="text" readonly autocomplete="off" spellcheck="false" aria-label="Generated password">
+    <button id="copy-password" class="copy-password" type="button" aria-label="Copy generated password" title="Copy password">
+      <svg class="copy-icon" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+        <rect x="4" y="8" width="12" height="13" rx="3"/>
+        <path d="M9 8V5a2 2 0 0 1 2-2h7a3 3 0 0 1 3 3v9a2 2 0 0 1-2 2h-3"/>
+      </svg>
+      <svg class="copied-icon" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="m5 12 4 4L19 6"/></svg>
+    </button>
+  </div>
+  <button id="generate-password" class="submit-btn generator-generate" type="button">
+    <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M20 7v5h-5M4 17v-5h5M6.1 7a7 7 0 0 1 11.5-2L20 8M4 16l2.4 3A7 7 0 0 0 18 17"/></svg>
+    <span>Generate Secure Password</span>
+  </button>
+  <p id="generator-status" class="sr-only" role="status" aria-atomic="true"></p>
+</section>
+</main>
 
 <div id="custom-overlay" class="overlay-backdrop">
   <div class="overlay-box">
@@ -45,6 +112,8 @@
 </div>
 
 <script src="source.js"></script>
+<script src="demo.js"></script>
+<script src="generator.js"></script>
 
 </body>
 </html>

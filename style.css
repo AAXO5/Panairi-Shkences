@@ -3,23 +3,245 @@
           background-image: 
             radial-gradient(circle at 15% 85%, rgba(0, 180, 216, 0.35) 0%, transparent 45%),
             radial-gradient(circle at 85% 15%, rgba(114, 9, 183, 0.25) 0%, transparent 50%);
-          height: 100vh;
+          min-height: 100vh;
           display: flex;
-          justify-content: center;
+          flex-direction: column;
+          justify-content: flex-start;
           align-items: center;
           font-family: monospace, sans-serif;
           margin: 0;
           color: #e2e8f0;
         }
 
+        .lab-header {
+          box-sizing: border-box;
+          width: 100%;
+          flex-shrink: 0;
+          padding: 16px 24px 26px;
+          text-align: center;
+        }
+
+        .lab-shield {
+          display: block;
+          width: 44px;
+          height: 44px;
+          margin: 0 auto;
+          color: #7dd3fc;
+          filter: drop-shadow(0 0 10px rgba(56, 189, 248, 0.35));
+        }
+
+        .lab-header h1 {
+          margin: 24px 0 22px;
+          color: #7dd3fc;
+          font-size: 36px;
+          font-weight: 700;
+          line-height: 1.2;
+          letter-spacing: 1px;
+          text-shadow: 0 0 15px rgba(125, 211, 252, 0.5);
+        }
+
+        .lab-header h2 {
+          margin: 0;
+          color: #e2e8f0;
+          font-size: 24px;
+          font-weight: 600;
+          line-height: 1.4;
+        }
+
+        .lab-header p {
+          max-width: 760px;
+          margin: 20px auto 0;
+          color: #94a3b8;
+          font-size: 16px;
+          line-height: 1.6;
+        }
+
+        .lab-main {
+          width: 100%;
+        }
+
+        .password-demo {
+          --demo-strength-color: #fbbf24;
+          box-sizing: border-box;
+          width: calc(100% - 32px);
+          max-width: 792px;
+          margin: 10px auto 0;
+          padding: 36px 45px;
+          background: rgba(15, 23, 42, 0.55);
+          backdrop-filter: blur(20px);
+          -webkit-backdrop-filter: blur(20px);
+          border: 1px solid rgba(255, 255, 255, 0.08);
+          border-radius: 28px;
+          box-shadow: 0 25px 50px rgba(0, 0, 0, 0.5), inset 0 1px 0 rgba(255, 255, 255, 0.1);
+        }
+
+        .password-demo h2 {
+          display: flex;
+          align-items: center;
+          gap: 12px;
+          margin: 0 0 24px;
+          color: #7dd3fc;
+          font-size: 22px;
+          line-height: 1.4;
+          text-shadow: 0 0 15px rgba(125, 211, 252, 0.3);
+        }
+
+        .password-demo h2 svg {
+          flex-shrink: 0;
+          width: 26px;
+          height: 26px;
+          stroke: currentColor;
+          stroke-width: 1.8;
+          stroke-linecap: round;
+          stroke-linejoin: round;
+        }
+
+        .password-demo label {
+          display: block;
+          margin-bottom: 14px;
+          color: #94a3b8;
+          font-size: 14px;
+          line-height: 1.6;
+        }
+
+        #demo-password {
+          box-sizing: border-box;
+          width: 100%;
+          min-width: 0;
+          padding: 16px 20px;
+          border: 1px solid rgba(255, 255, 255, 0.12);
+          border-radius: 24px;
+          background: rgba(20, 29, 45, 0.7);
+          color: #f8fafc;
+          font: inherit;
+          font-size: 18px;
+          outline: none;
+          transition: border-color 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        #demo-password:focus {
+          border-color: #38bdf8;
+          box-shadow: 0 0 15px rgba(56, 189, 248, 0.3);
+        }
+
+        .demo-meter {
+          display: grid;
+          grid-template-columns: repeat(5, minmax(0, 1fr));
+          gap: 6px;
+          margin-top: 18px;
+        }
+
+        .demo-meter span {
+          height: 6px;
+          border-radius: 4px;
+          background: rgba(255, 255, 255, 0.1);
+          transition: background-color 0.2s ease;
+        }
+
+        .demo-meter .is-active {
+          background: var(--demo-strength-color);
+        }
+
+        .demo-strength-text {
+          margin: 18px 0 26px;
+          color: var(--demo-strength-color);
+          font-size: 16px;
+          font-weight: bold;
+          line-height: 1.5;
+        }
+
+        .password-demo[data-strength="empty"] {
+          --demo-strength-color: #94a3b8;
+        }
+
+        .password-demo[data-strength="weak"] {
+          --demo-strength-color: #f87171;
+        }
+
+        .password-demo[data-strength="strong"] {
+          --demo-strength-color: #4ade80;
+        }
+
+        .demo-rules {
+          display: grid;
+          gap: 18px;
+          margin: 0;
+          padding: 24px 0 0;
+          border-top: 1px solid rgba(255, 255, 255, 0.1);
+          list-style: none;
+        }
+
+        .demo-rules li {
+          display: flex;
+          align-items: center;
+          gap: 12px;
+          color: #94a3b8;
+          font-size: 15px;
+          line-height: 1.5;
+        }
+
+        .demo-rule-icon {
+          box-sizing: border-box;
+          display: inline-flex;
+          flex-shrink: 0;
+          align-items: center;
+          justify-content: center;
+          width: 18px;
+          height: 18px;
+          border: 1.5px solid currentColor;
+          border-radius: 50%;
+          color: #f87171;
+          font-size: 13px;
+          font-weight: bold;
+          line-height: 1;
+        }
+
+        .demo-rules .is-met,
+        .demo-rules .is-met .demo-rule-icon {
+          color: #86efac;
+        }
+
+        .password-demo[data-strength="empty"] .demo-rule-icon {
+          color: #64748b;
+        }
+
+        .sr-only {
+          position: absolute;
+          width: 1px;
+          height: 1px;
+          padding: 0;
+          overflow: hidden;
+          clip-path: inset(50%);
+          white-space: nowrap;
+        }
+
+        .lab-content {
+          box-sizing: border-box;
+          display: grid;
+          grid-template-columns: minmax(0, 1fr);
+          align-items: stretch;
+          gap: 20px;
+          width: calc(100% - 32px);
+          max-width: 792px;
+          margin: 32px auto;
+        }
+
+        .lab-content.has-feedback {
+          max-width: 1200px;
+          grid-template-columns: repeat(2, minmax(0, 1fr));
+        }
+
         .signup-container {
+          container-type: inline-size;
+          box-sizing: border-box;
+          min-width: 0;
           background: rgba(15, 23, 42, 0.55);
           backdrop-filter: blur(20px);
           -webkit-backdrop-filter: blur(20px);
           border: 1px solid rgba(255, 255, 255, 0.08);
           border-radius: 28px;
           padding: 45px;
-          width: 700px;
+          width: 100%;
           box-shadow: 0 25px 50px rgba(0, 0, 0, 0.5), inset 0 1px 0 rgba(255, 255, 255, 0.1);
         }
 
@@ -30,6 +252,49 @@
           margin-bottom: 35px;
           letter-spacing: 1px;
           text-shadow: 0 0 15px rgba(125, 211, 252, 0.5);
+        }
+
+        .cyber-challenge {
+          margin-top: 32px;
+          padding-top: 32px;
+          border-top: 1px solid rgba(255, 255, 255, 0.12);
+          text-align: center;
+        }
+
+        .challenge-shield {
+          display: block;
+          width: clamp(30px, 5.5cqi, 38px);
+          height: auto;
+          margin: 0 auto;
+          color: #7dd3fc;
+          filter: drop-shadow(0 0 10px rgba(56, 189, 248, 0.25));
+        }
+
+        .cyber-challenge h3 {
+          margin: 22px 0 18px;
+          color: #7dd3fc;
+          font-size: clamp(18px, 4.2cqi, 24px);
+          line-height: 1.4;
+          letter-spacing: 0.6px;
+          text-shadow: 0 0 15px rgba(125, 211, 252, 0.3);
+        }
+
+        .challenge-question {
+          margin: 0 0 16px;
+          color: #e2e8f0;
+          font-size: clamp(16px, 3.5cqi, 20px);
+          font-weight: bold;
+          line-height: 1.5;
+          text-wrap: balance;
+        }
+
+        .challenge-description {
+          max-width: 52ch;
+          margin: 0 auto;
+          color: #94a3b8;
+          font-size: clamp(14px, 2.7cqi, 16px);
+          line-height: 1.7;
+          text-wrap: balance;
         }
 
         .input-group {
@@ -68,16 +333,17 @@
        
         .password-strength {
           display: none;
-          align-items: center;
-          justify-content: space-between;
-          margin-top: 10px;
+          flex-direction: column;
+          align-items: stretch;
+          gap: 12px;
+          margin-top: 16px;
           font-size: 12px;
         }
 
         .strength-bar {
           background: rgba(255, 255, 255, 0.1);
-          height: 4px;
-          width: 140px;
+          height: 7px;
+          width: 100%;
           border-radius: 4px;
           overflow: hidden;
           transition: height 0.3s ease;
@@ -87,7 +353,7 @@
           height: 100%;
           width: 0%;
           border-radius: 4px;
-          transition: width 0.3s ease, background-color 0.3s ease;
+          transition: width 650ms cubic-bezier(0.4, 0, 0.2, 1), background-color 650ms ease;
         }
 
         .submit-btn {
@@ -109,89 +375,343 @@
           transform: translateY(-2px);
           box-shadow: 0 6px 25px rgba(96, 165, 250, 0.6);
         }
-        #issuebox{
-            width: 400px;
-            max-width: 0;
-            max-height: 0;
-            opacity: 0;
-            overflow: hidden;
-            background-color: #220f0f;
-            border: 1px solid rgba(248, 113, 113, 0.4);
-            border-radius: 25px;
-            padding: 0;
-            margin-left: 0;
-            color: #fca5a5;
-            font-size: 14px;
-            transition: max-width 0.5s ease, max-height 0.5s ease, padding 0.5s ease, margin 0.5s ease, opacity 0.4s ease;
+        .lab-content.has-feedback .signup-container {
+          padding: 32px;
         }
 
-        /* box slides in and the form glides over to make room */
-        #issuebox.show {
-            max-width: 400px;
-            max-height: 700px;
-            opacity: 1;
-            padding: 25px 30px;
-            margin-left: 30px;
+        .signup-feedback {
+          display: flex;
+          flex-direction: column;
+          gap: 18px;
+          min-width: 0;
         }
 
-        /* fixed width so the text doesnt jump around while it opens */
-        #issuebox h3, #issuebox p {
-            width: 400px;
+        .signup-feedback[hidden] {
+          display: none;
         }
 
-        #issuebox h3 {
-            color: #f87171;
-            margin-top: 0;
+        #strength-text,
+        .cracking-time,
+        #cracking-risk {
+          transition: color 650ms ease;
         }
 
-        #issuebox p {
-            white-space: pre-line;
-            line-height: 1.5;
+        .cracking-time {
+          font-variant-numeric: tabular-nums;
         }
 
-        /* the fact part, so it doesnt blend in with the normal text */
-        #issuebox i {
-            display: block;
-            margin-top: 6px;
-            padding: 12px 16px;
-            font-style: normal;
-            color: #bae6fd;
-            background: rgba(56, 189, 248, 0.08);
-            border-left: 3px solid #38bdf8;
-            border-radius: 8px;
+        @media (prefers-reduced-motion: reduce) {
+          #strength-text,
+          .cracking-time,
+          #cracking-risk,
+          .strength-fill {
+            transition: none;
+          }
         }
 
-        #issuebox i b {
-            color: #7dd3fc;
-            font-size: 16px;
+        #issuebox {
+          padding: 22px 24px;
+          border: 1px solid rgba(248, 113, 113, 0.35);
+          border-radius: 28px;
+          background: rgba(40, 19, 24, 0.75);
+          color: #fca5a5;
         }
 
-        #issuebox img {
-            display: none;
-            max-width: 100%;
-            border-radius: 12px;
+        #issue-reason {
+          margin: 0 0 12px;
+          color: #f87171;
+          font-size: 18px;
+          line-height: 1.5;
+          overflow-wrap: anywhere;
         }
 
-        /* not enough room on the side, put it under the form */
-        @media (max-width: 1300px) {
-            body {
-                flex-direction: column;
-                height: auto;
-                min-height: 100vh;
-                padding: 30px 0;
-                box-sizing: border-box;
-            }
+        #issue-description {
+          margin: 0;
+          font-size: 15px;
+          line-height: 1.65;
+        }
 
-            #issuebox.show {
-                margin-left: 0;
-                margin-top: 25px;
-            }
+        .cracking-card {
+          flex: 1;
+          padding: 24px;
+          border: 1px solid rgba(125, 211, 252, 0.35);
+          border-radius: 28px;
+          background: rgba(15, 23, 42, 0.55);
+          backdrop-filter: blur(20px);
+          -webkit-backdrop-filter: blur(20px);
+          box-shadow: 0 25px 50px rgba(0, 0, 0, 0.3), inset 0 1px 0 rgba(255, 255, 255, 0.08);
+        }
+
+        .cracking-card h3 {
+          display: flex;
+          align-items: center;
+          gap: 10px;
+          margin: 0 0 20px;
+          color: #7dd3fc;
+          font-size: 18px;
+          line-height: 1.5;
+          text-shadow: 0 0 15px rgba(125, 211, 252, 0.25);
+        }
+
+        .cracking-card h3 svg {
+          flex-shrink: 0;
+          width: 24px;
+          height: 24px;
+          stroke: currentColor;
+          stroke-width: 1.8;
+          stroke-linecap: round;
+          stroke-linejoin: round;
+        }
+
+        .cracking-label {
+          margin: 0;
+          color: #94a3b8;
+          font-size: 15px;
+          line-height: 1.5;
+        }
+
+        .cracking-time {
+          display: block;
+          margin: 16px 0 26px;
+          color: #f87171;
+          font-size: clamp(25px, 2.6vw, 32px);
+          font-weight: bold;
+          line-height: 1.4;
+          overflow-wrap: anywhere;
+        }
+
+        .cracking-details {
+          display: grid;
+          gap: 22px;
+          margin: 0;
+          padding-top: 24px;
+          border-top: 1px solid rgba(255, 255, 255, 0.12);
+        }
+
+        .cracking-details div {
+          display: flex;
+          justify-content: space-between;
+          align-items: baseline;
+          gap: 16px;
+          font-size: 14px;
+          line-height: 1.6;
+        }
+
+        .cracking-details dt {
+          color: #94a3b8;
+        }
+
+        .cracking-details dd {
+          margin: 0;
+          text-align: right;
+        }
+
+        #cracking-risk {
+          color: #f87171;
+        }
+
+        .cracking-card[data-risk="medium"] .cracking-time,
+        .cracking-card[data-risk="medium"] #cracking-risk {
+          color: #fbbf24;
+        }
+
+        .cracking-card[data-risk="low"] .cracking-time,
+        .cracking-card[data-risk="low"] #cracking-risk {
+          color: #4ade80;
+        }
+
+        .cracking-note {
+          margin: 26px 0 0;
+          color: #94a3b8;
+          font-size: 13px;
+          line-height: 1.7;
+        }
+
+        .password-generator {
+          box-sizing: border-box;
+          width: calc(100% - 32px);
+          max-width: 792px;
+          margin: 0 auto 64px;
+          padding: 32px 45px;
+          border: 1px solid rgba(255, 255, 255, 0.08);
+          border-radius: 28px;
+          background: rgba(15, 23, 42, 0.55);
+          backdrop-filter: blur(20px);
+          -webkit-backdrop-filter: blur(20px);
+          box-shadow: 0 25px 50px rgba(0, 0, 0, 0.5), inset 0 1px 0 rgba(255, 255, 255, 0.1);
+        }
+
+        .password-generator h2 {
+          display: flex;
+          align-items: center;
+          gap: 12px;
+          margin: 0 0 24px;
+          color: #7dd3fc;
+          font-size: 22px;
+          line-height: 1.4;
+          text-shadow: 0 0 15px rgba(125, 211, 252, 0.3);
+        }
+
+        .password-generator svg {
+          flex-shrink: 0;
+          width: 24px;
+          height: 24px;
+          stroke: currentColor;
+          stroke-width: 1.8;
+          stroke-linecap: round;
+          stroke-linejoin: round;
+        }
+
+        .generated-password-field {
+          display: flex;
+          align-items: center;
+          gap: 8px;
+          padding: 10px 12px 10px 20px;
+          border: 1px solid rgba(255, 255, 255, 0.08);
+          border-radius: 14px;
+          background: rgba(20, 29, 45, 0.8);
+          transition: border-color 300ms ease, box-shadow 300ms ease;
+        }
+
+        .generated-password-field:focus-within {
+          border-color: #38bdf8;
+          box-shadow: 0 0 15px rgba(56, 189, 248, 0.2);
+        }
+
+        #generated-password {
+          flex: 1;
+          width: 100%;
+          min-width: 0;
+          padding: 0;
+          border: 0;
+          outline: none;
+          background: transparent;
+          color: #86efac;
+          font: bold 18px/1.6 monospace, sans-serif;
+        }
+
+        .copy-password {
+          display: inline-flex;
+          flex-shrink: 0;
+          align-items: center;
+          justify-content: center;
+          width: 44px;
+          height: 44px;
+          padding: 10px;
+          border: 0;
+          border-radius: 10px;
+          background: transparent;
+          color: #7dd3fc;
+          cursor: pointer;
+          transition: color 300ms ease, background-color 300ms ease;
+        }
+
+        .copy-password:hover {
+          background: rgba(56, 189, 248, 0.1);
+        }
+
+        .copy-password[data-copied="true"] {
+          color: #86efac;
+        }
+
+        .copy-password .copied-icon,
+        .copy-password[data-copied="true"] .copy-icon {
+          display: none;
+        }
+
+        .copy-password[data-copied="true"] .copied-icon {
+          display: block;
+        }
+
+        .generator-generate {
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          gap: 10px;
+          margin-top: 18px;
+          font-family: inherit;
+          line-height: 1.5;
+        }
+
+        .generator-generate svg {
+          width: 20px;
+          height: 20px;
+        }
+
+        .copy-password:focus-visible,
+        .generator-generate:focus-visible {
+          outline: 2px solid #7dd3fc;
+          outline-offset: 4px;
+        }
+
+        @media (max-width: 900px) {
+          .lab-content.has-feedback {
+            grid-template-columns: minmax(0, 1fr);
+            max-width: 792px;
+          }
         }
 
         /* phones, the form and box are too wide so let them fill the screen */
         @media (max-width: 830px) {
+            .password-generator {
+                padding: 28px 22px;
+            }
+
+            .password-generator h2 {
+                gap: 10px;
+                font-size: 20px;
+            }
+
+            .generated-password-field {
+                padding-left: 14px;
+                padding-right: 6px;
+                gap: 4px;
+            }
+
+            #generated-password {
+                font-size: clamp(13px, 3.5vw, 16px);
+            }
+
+            .generator-generate {
+                font-size: 14px;
+            }
+
+            .password-demo {
+                padding: 28px 22px;
+            }
+
+            .password-demo h2 {
+                gap: 10px;
+                font-size: 20px;
+            }
+
+            #demo-password {
+                font-size: 16px;
+            }
+
+            .lab-header {
+                padding: 20px 20px 28px;
+            }
+
+            .lab-header h1 {
+                font-size: clamp(22px, 4.5vw, 36px);
+            }
+
+            .lab-header h2 {
+                font-size: clamp(18px, 3.5vw, 24px);
+            }
+
+            .lab-header p {
+                max-width: 540px;
+                margin: 18px auto 0;
+                font-size: 15px;
+            }
+
             .signup-container {
-                width: calc(100% - 32px);
+          container-type: inline-size;
+          box-sizing: border-box;
+          min-width: 0;
+                width: 100%;
                 box-sizing: border-box;
                 padding: 30px 22px;
             }
@@ -206,14 +726,12 @@
                 font-size: 16px;
             }
 
-            #issuebox, #issuebox.show {
-                width: calc(100% - 32px);
-                max-width: none;
-                box-sizing: border-box;
+            .lab-content.has-feedback .signup-container {
+                padding: 30px 22px;
             }
 
-            #issuebox h3, #issuebox p {
-                width: auto;
+            #issuebox, .cracking-card {
+                padding: 22px;
             }
         }
        
