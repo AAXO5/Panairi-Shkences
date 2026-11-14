@@ -105,7 +105,14 @@ function estimateCrackingTime(password) {
 
 const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
 const signupCard = document.querySelector('.signup-container');
-signupCard.querySelector('form').addEventListener('submit', event => event.preventDefault());
+const signupForm = signupCard.querySelector('form');
+const signupEmail = document.getElementById('signup-email');
+const challenge = signupCard.querySelector('.cyber-challenge');
+const challengePanel = challenge.querySelector('.challenge-panel');
+const challengeTitle = document.getElementById('challenge-title');
+const challengeQuestion = challenge.querySelector('.challenge-question');
+const challengeDescription = challenge.querySelector('.challenge-description');
+let challengeAnimation;
 const textTransitions = new Map();
 const motionEasing = 'cubic-bezier(0.4, 0, 0.2, 1)';
 let feedbackVisible = false;
@@ -233,6 +240,7 @@ function setFeedbackVisible(visible) {
 
 reducedMotion.addEventListener('change', () => {
   if (!reducedMotion.matches) return;
+  challengeAnimation?.cancel();
   visibilityAnimation?.cancel();
   layoutAnimation?.cancel();
   for (const element of textTransitions.keys()) stopTextTransition(element);
@@ -240,6 +248,7 @@ reducedMotion.addEventListener('change', () => {
 });
 
 function updateSignupFeedback() {
+  passwordInput.setCustomValidity('');
   const password = passwordInput.value;
   const animateChanges = feedbackVisible && !feedback.hidden;
   if (password === '') {
@@ -273,7 +282,37 @@ function updateSignupFeedback() {
   setFeedbackVisible(!passes);
 }
 
-passwordInput.addEventListener('input', updateSignupFeedback);
+function setChallengeCompleted(completed) {
+  if (challenge.classList.contains('is-complete') === completed) return;
+  const before = signupCard.getBoundingClientRect();
+  challenge.classList.toggle('is-complete', completed);
+  challengeTitle.textContent = completed ? 'CHALLENGE COMPLETED!' : 'CYBER CHALLENGE';
+  challengeQuestion.textContent = completed ? 'You Passed the Cybersecurity Challenge!' : 'Can You Beat the Hacker?';
+  challengeDescription.textContent = completed ? 'Think smart. Stay secure.' : 'Create a strong password to complete the challenge.';
+  challengeAnimation?.cancel();
+  animateSignupLayout(before);
+  if (!reducedMotion.matches) {
+    challengeAnimation = challengePanel.animate([
+      {opacity: 0.2, transform: 'translateY(6px)'},
+      {opacity: 1, transform: 'translateY(0)'},
+    ], {duration: 650, easing: motionEasing});
+  }
+}
+
+passwordInput.addEventListener('input', () => {
+  setChallengeCompleted(false);
+  updateSignupFeedback();
+});
+signupEmail.addEventListener('input', () => setChallengeCompleted(false));
+signupForm.addEventListener('submit', event => {
+  event.preventDefault();
+  updateSignupFeedback();
+  if (!Object.values(rules).every(check => check(passwordInput.value))) {
+    passwordInput.setCustomValidity('Use 8–64 characters with uppercase and lowercase letters, a number, and a special symbol.');
+  }
+  if (!signupForm.reportValidity()) return;
+  setChallengeCompleted(true);
+});
 updateSignupFeedback();
 
 // Password strength demonstrator.

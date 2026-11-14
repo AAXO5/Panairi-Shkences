@@ -261,7 +261,8 @@
           text-align: center;
         }
 
-        .challenge-shield {
+        .challenge-shield,
+        .challenge-trophy {
           display: block;
           width: clamp(30px, 5.5cqi, 38px);
           height: auto;
@@ -295,6 +296,43 @@
           font-size: clamp(14px, 2.7cqi, 16px);
           line-height: 1.7;
           text-wrap: balance;
+        }
+
+        .challenge-panel {
+          border: 1px solid transparent;
+          border-radius: 20px;
+          transition: background-color 650ms ease, border-color 650ms ease;
+        }
+
+        .challenge-trophy {
+          display: none;
+        }
+
+        .cyber-challenge.is-complete .challenge-panel {
+          padding: 28px 18px;
+          border-color: rgba(134, 239, 172, 0.3);
+          background: rgba(74, 222, 128, 0.08);
+        }
+
+        .cyber-challenge.is-complete .challenge-shield {
+          display: none;
+        }
+
+        .cyber-challenge.is-complete .challenge-trophy {
+          display: block;
+          color: #86efac;
+          filter: drop-shadow(0 0 10px rgba(74, 222, 128, 0.25));
+        }
+
+        .cyber-challenge.is-complete h3 {
+          color: #86efac;
+          text-shadow: 0 0 15px rgba(74, 222, 128, 0.25);
+        }
+
+        @media (prefers-reduced-motion: reduce) {
+          .challenge-panel {
+            transition: none;
+          }
         }
 
         .input-group {

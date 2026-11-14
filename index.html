@@ -51,7 +51,7 @@
   <form>
     <div class="input-group">
       <label for="signup-email">Email address</label>
-      <input id="signup-email" type="email" placeholder="placeholder@gmail.com" required>
+      <input id="signup-email" type="email" pattern="[^\s@]+@[^\s@]+\.[^\s@]+" title="Enter an email address such as demo@example.com." placeholder="placeholder@gmail.com" required>
     </div>
     <div class="input-group">
       <label for="password">Password</label>
@@ -63,15 +63,20 @@
         </div>
       </div>
     </div>
-    <button type="button" class="submit-btn">Create Account</button>
+    <button type="submit" class="submit-btn">Create Account</button>
   </form>
-  <section class="cyber-challenge" aria-labelledby="challenge-title">
+  <section class="cyber-challenge" aria-labelledby="challenge-title" aria-live="polite" aria-atomic="true">
+    <div class="challenge-panel">
     <svg class="challenge-shield" viewBox="0 0 48 48" fill="none" aria-hidden="true">
       <path d="M24 5 10 11a4 4 0 0 0-2.5 3.7V24c0 9.5 5.9 15.7 16.5 19 10.6-3.3 16.5-9.5 16.5-19v-9.3A4 4 0 0 0 38 11L24 5Z" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+    </svg>
+    <svg class="challenge-trophy" viewBox="0 0 48 48" fill="none" aria-hidden="true">
+      <path d="M13 5h22v12a11 11 0 0 1-22 0V5ZM13 9H7v5a9 9 0 0 0 9 9M35 9h6v5a9 9 0 0 1-9 9M24 28v9M18 37h12a4 4 0 0 1 4 4v2H14v-2a4 4 0 0 1 4-4Z" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
     </svg>
     <h3 id="challenge-title">CYBER CHALLENGE</h3>
     <p class="challenge-question">Can You Beat the Hacker?</p>
     <p class="challenge-description">Create a strong password to complete the challenge.</p>
+    </div>
   </section>
 </div>
 
