@@ -304,6 +304,12 @@ passwordInput.addEventListener('input', () => {
   updateSignupFeedback();
 });
 signupEmail.addEventListener('input', () => setChallengeCompleted(false));
+document.getElementById('try-again').addEventListener('click', () => {
+  signupForm.reset();
+  setChallengeCompleted(false);
+  updateSignupFeedback();
+  signupEmail.focus();
+});
 signupForm.addEventListener('submit', event => {
   event.preventDefault();
   updateSignupFeedback();
