@@ -713,7 +713,6 @@
           }
         }
 
-        /* phones, the form and box are too wide so let them fill the screen */
         @media (max-width: 830px) {
             .password-generator {
                 padding: 28px 22px;
@@ -783,7 +782,6 @@
                 margin-bottom: 25px;
             }
 
-            /* 16px stops iphones from zooming in when you tap the input */
             .input-group input {
                 font-size: 16px;
             }

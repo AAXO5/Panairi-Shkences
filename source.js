@@ -1,4 +1,3 @@
-// Signup feedback stays separate from the standalone password demonstrator.
 const rules = {
   minlen: password => [...password].length >= 8,
   maxlen: password => [...password].length <= 64,
@@ -39,7 +38,6 @@ const passwordInput = document.getElementById('password');
 const signupContent = document.querySelector('.lab-content');
 const feedback = document.getElementById('signup-feedback');
 
-// Build the warning and simulation cards here, without inserting password text.
 feedback.innerHTML = `
   <section id="issuebox" lang="sq" aria-labelledby="issue-reason">
     <h3 id="issue-reason"></h3>
@@ -75,8 +73,6 @@ const crackingRisk = document.getElementById('cracking-risk');
 const ruleCount = Object.keys(rules).length;
 
 function estimateCrackingTime(password) {
-  // Uniform brute-force model: half the possible combinations / 1,000,000 per second.
-  // Logs keep very long inputs finite. This is an illustration, not a real attack.
   let alphabet = 0;
   if (/\p{Ll}/u.test(password)) alphabet += 26;
   if (/\p{Lu}/u.test(password)) alphabet += 26;
@@ -135,7 +131,6 @@ function updateText(element, value, animate) {
     return;
   }
   if (running) {
-    // Keep the fade in progress and coalesce rapid typing into the latest result.
     running.value = value;
     return;
   }
@@ -174,7 +169,6 @@ function animateSignupLayout(before) {
   if (reducedMotion.matches) return;
   const after = signupCard.getBoundingClientRect();
   if (!after.width || !after.height) return;
-  // Ease the form into its new position as the feedback column opens or closes.
   layoutAnimation = signupCard.animate([
     {
       transformOrigin: 'top left',
@@ -321,8 +315,6 @@ signupForm.addEventListener('submit', event => {
 });
 updateSignupFeedback();
 
-// Password strength demonstrator.
-// This standalone demonstrator never copies its value into the signup form.
 (() => {
   const demo = document.querySelector('.password-demo');
   const input = document.getElementById('demo-password');
@@ -369,7 +361,6 @@ updateSignupFeedback();
   updateDemo();
 })();
 
-// Secure password generator and clipboard controls.
 (() => {
   const output = document.getElementById('generated-password');
   const generateButton = document.getElementById('generate-password');
@@ -385,7 +376,6 @@ updateSignupFeedback();
   const alphabet = groups.join('');
   const length = 20;
   const random = new Uint32Array(1);
-  // Reject the remainder rather than biasing some characters with a plain modulo.
   const limit = Math.floor(0x1_0000_0000 / alphabet.length) * alphabet.length;
   let copyReset;
   let outputAnimation;
@@ -408,7 +398,6 @@ updateSignupFeedback();
 
   function generate(announce = true) {
     let password;
-    // Rejection sampling ensures every result has all four character types.
     do {
       password = Array.from({length}, randomCharacter).join('');
     } while (!groups.every(group => [...password].some(character => group.includes(character))));
@@ -451,7 +440,6 @@ updateSignupFeedback();
         copied = true;
       }
     } catch {
-      // Local file previews and some browser settings need the selection fallback.
     }
     if (version !== copyVersion) return;
     if (!copied) {
